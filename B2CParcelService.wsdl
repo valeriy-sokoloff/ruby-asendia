@@ -1,0 +1,1032 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions name="B2CParcelService" targetNamespace="http://www.post.ch/xml/b2c/schema/2012/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:b2c="http://www.post.ch/xml/b2c/schema/2012/" xmlns:b2c_ws="http://www.post.ch/xml/b2c/schema/2012/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.post.ch/xml/b2c/schema/2012/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+			<xsd:element name="ParcelDataRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ConsignorIdentification" type="b2c:ConsignorIdentification" minOccurs="0"/>
+						<xsd:element name="ConsignorSenderAddress" type="b2c:ConsignorSenderAddress" minOccurs="0" />
+						<xsd:element name="ConsignorReturnAddress" type="b2c:ConsignorReturnAddress" minOccurs="0" />
+						<xsd:element name="ParcelData" maxOccurs="100">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Reference" type="b2c:Reference" />
+									<xsd:element name="Recipient">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="Name">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="1" />
+															<xsd:maxLength value="100" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="Contact" minOccurs="0">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="1" />
+															<xsd:maxLength value="100" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="Street">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="1" />
+															<xsd:maxLength value="100" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="No" minOccurs="0">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="1" />
+															<xsd:maxLength value="100" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="City">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="1" />
+															<xsd:maxLength value="100" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="ZIPCode">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="0" />
+															<xsd:maxLength value="10" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="Region" minOccurs="0">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="1" />
+															<xsd:maxLength value="100" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="CountryCode">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="1" />
+															<xsd:maxLength value="2" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="Mobile" minOccurs="0">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:pattern value="[+]?[ \d]{1,20}" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="Email" minOccurs="0">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:minLength value="1" />
+															<xsd:maxLength value="100" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="ItemInformation">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="Weight">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:decimal">
+															<xsd:minExclusive value="0" />
+															<xsd:fractionDigits value="3" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+												<xsd:element name="Format">
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:pattern value="[A-Z]{1,10}" />
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="BasicService">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:pattern value="[A-Z]{2}" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="AdditionalService" minOccurs="0" maxOccurs="unbounded">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:pattern value="\d{2}" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="AdditionalServiceRetour" minOccurs="0" maxOccurs="unbounded">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:pattern value="\d{2}" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="Content" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:enumeration value="1" />
+												<xsd:enumeration value="3" />
+												<xsd:enumeration value="4" />
+												<xsd:enumeration value="5" />
+												<xsd:enumeration value="6" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="Currency" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:enumeration value="EUR" />
+												<xsd:enumeration value="CHF" />
+												<xsd:enumeration value="USD" />
+												<xsd:enumeration value="GBP" />
+												<xsd:enumeration value="SEK" />
+												<xsd:enumeration value="SGD" />
+												<xsd:enumeration value="HKD" />
+												<xsd:enumeration value="DKK" />
+												<xsd:enumeration value="NOK" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="CN22Position" type="b2c:CN22Position" minOccurs="0" maxOccurs="5"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="DocumentSettings" type="b2c:DocumentSettings" minOccurs="0" >
+							<xsd:annotation>
+								<xsd:documentation>Label printing is ignored if document settings are missing</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="ParcelLabelRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ConsignorIdentification" type="b2c:ConsignorIdentification" minOccurs="0"/>
+						<xsd:element name="Reference" type="b2c:Reference" maxOccurs="100" />
+						<xsd:element name="DocumentSettings" type="b2c:DocumentSettings" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="ParcelLabelResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ResponseStatus" type="b2c:Status" />
+						<xsd:element name="LabelStatus" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Reference" type="b2c:Reference" />
+									<xsd:element name="Status" type="b2c:Status" />
+									<xsd:element name="ParcelID" type="b2c:ParcelID" minOccurs="0" />
+									<xsd:element name="ParcelIdReturn" type="b2c:ParcelID" minOccurs="0" />
+									<xsd:element name="DeliveryPoint" type="b2c:DeliveryPoint" minOccurs="0" />
+									<xsd:element name="LabelDocument" type="xsd:base64Binary" minOccurs="0" />
+									<xsd:element name="LabelDocumentCN22" type="xsd:base64Binary" minOccurs="0" />
+									<xsd:element name="LabelDocumentReturn" type="xsd:base64Binary" minOccurs="0" />
+									<xsd:element name="AdditionalDocument" type="xsd:base64Binary" minOccurs="0" />
+									<xsd:element name="ErrorMessage" type="b2c:ErrorMessage" minOccurs="0" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="LabelDocument" type="xsd:base64Binary" minOccurs="0" />
+						<xsd:element name="ErrorMessage" type="b2c:ErrorMessage" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="DispatchListRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ConsignorIdentification" type="b2c:ConsignorIdentification" minOccurs="0" />
+						<xsd:element name="ConsignorPickupAddress" type="b2c:ConsignorPickupAddress" minOccurs="0" />
+						<xsd:element name="AWACode" type="b2c:AWACode" minOccurs="0" />
+						<xsd:element name="DispatchListData" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="numberOfPallets" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:int">
+												<xsd:minInclusive value="1" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="totalWeightGross" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:decimal">
+												<xsd:fractionDigits value="3" />
+												<xsd:minExclusive value="0" />
+												<xsd:maxExclusive value="1000000.000" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="remarks" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:minLength value="1" />
+												<xsd:maxLength value="250" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="deliveryDateFrom" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:dateTime">
+												<xsd:minInclusive value="1900-01-01T00:00:00" />
+												<xsd:maxExclusive value="2900-01-01T00:00:00" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="deliveryDateTo" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:dateTime">
+												<xsd:minInclusive value="1900-01-01T00:00:00" />
+												<xsd:maxExclusive value="2900-01-01T00:00:00" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="pickupDateFrom" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:dateTime">
+												<xsd:minInclusive value="1900-01-01T00:00:00" />
+												<xsd:maxExclusive value="2900-01-01T00:00:00" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="pickupDateTo" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:dateTime">
+												<xsd:minInclusive value="1900-01-01T00:00:00" />
+												<xsd:maxExclusive value="2900-01-01T00:00:00" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Reference" type="b2c:Reference" minOccurs="0" maxOccurs="100" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="DispatchListResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ResponseStatus" type="b2c:Status" />
+						<xsd:element name="DispatchListStatus" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="DispatchListIdentification">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:minLength value="1" />
+												<xsd:maxLength value="200" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="DeliveryPoint" type="b2c:DeliveryPoint" />
+									<xsd:element name="numberOfParcels">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:int">
+												<xsd:minInclusive value="0" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="totalWeightNet">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:decimal">
+												<xsd:fractionDigits value="3" />
+												<xsd:minInclusive value="0" />
+												<xsd:maxExclusive value="1000000.000" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="Reference" type="b2c:Reference" minOccurs="0" maxOccurs="unbounded" />
+									<xsd:element name="DispatchListDocument" type="xsd:base64Binary" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ErrorMessage" type="b2c:ErrorMessage" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="PrePaidLabelRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ConsignorIdentification" type="b2c:ConsignorIdentification" minOccurs="0" />
+						<xsd:element name="ConsignorReturnAddress" type="b2c:ConsignorReturnAddress" minOccurs="0" />
+						<xsd:element name="PrePaidData" maxOccurs="100">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Reference" type="b2c:Reference" />
+									<xsd:element name="AdditionalServiceRetour" minOccurs="0" maxOccurs="unbounded">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:pattern value="\d{2}" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="DocumentSettings" type="b2c:DocumentSettings" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="PrePaidLabelResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ResponseStatus" type="b2c:Status" />
+						<xsd:element name="LabelStatus" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Reference" type="b2c:Reference" />
+									<xsd:element name="Status" type="b2c:Status" />
+									<xsd:element name="ParcelIdReturn" type="b2c:ParcelID" minOccurs="0" />
+									<xsd:element name="LabelDocumentReturn" type="xsd:base64Binary" minOccurs="0" />
+									<xsd:element name="AdditionalDocument" type="xsd:base64Binary" minOccurs="0" />
+									<xsd:element name="ErrorMessage" type="b2c:ErrorMessage" minOccurs="0" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="LabelDocument" type="xsd:base64Binary" minOccurs="0" />
+						<xsd:element name="ErrorMessage" type="b2c:ErrorMessage" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="DeleteParcelRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ConsignorIdentification" type="b2c:ConsignorIdentification"  minOccurs="0" />
+						<xsd:element name="Reason">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:minLength value="1" />
+									<xsd:maxLength value="3" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Remarks" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:minLength value="1" />
+									<xsd:maxLength value="1000" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Reference" type="b2c:Reference" maxOccurs="100"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="DeleteParcelResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ResponseStatus" type="b2c:Status" />
+						<xsd:element name="DeleteStatus" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Reference" type="b2c:Reference" />
+									<xsd:element name="Status" type="b2c:Status" />
+									<xsd:element name="ErrorMessage" type="b2c:ErrorMessage" minOccurs="0" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ErrorMessage" type="b2c:ErrorMessage" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="EventRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ParcelReference" type="b2c:Reference" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="EventDateFrom" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:dateTime">
+									<xsd:minInclusive value="1900-01-01T00:00:00" />
+									<xsd:maxExclusive value="2900-01-01T00:00:00" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="EventDateTo" minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:dateTime">
+									<xsd:minInclusive value="1900-01-01T00:00:00" />
+									<xsd:maxExclusive value="2900-01-01T00:00:00" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="EventResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ResponseStatus" type="b2c:Status" />
+						<xsd:element name="ParcelInfo" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="ParcelID" type="b2c:ParcelID" minOccurs="0" />
+									<xsd:element name="Reference" type="b2c:Reference" />
+									<xsd:element name="Event" type="b2c:Event" minOccurs="0" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="ErrorMessage" type="b2c:ErrorMessage" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="ConnectionTestRequest" />
+
+			<xsd:element name="ConnectionTestResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ResponseStatus" type="b2c:Status" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:simpleType name="Reference">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="30" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="PrinterSettings">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="A6" />
+					<xsd:enumeration value="A4 - 4 Position" />
+					<xsd:enumeration value="A4 - top" />
+					<xsd:enumeration value="A4 - center" />
+					<xsd:enumeration value="A4 - bottom" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="Status">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="OK" />
+					<xsd:enumeration value="NOK" />
+					<xsd:enumeration value="WARN" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:complexType name="ErrorMessage">
+				<xsd:sequence>
+					<xsd:element name="Type">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="ERROR" />
+								<xsd:enumeration value="WARNING" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Code" type="xsd:long" />
+					<xsd:element name="Message" type="xsd:string" />
+					<xsd:element name="Detail" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="CN22Position">
+				<xsd:sequence>
+					<xsd:element name="Position" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:int">
+								<xsd:minInclusive value="1" />
+								<xsd:maxInclusive value="5" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="HSTarifNumber" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="9" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OriginCountry" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="2" />
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Description" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Quantity" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:int">
+                                <xsd:minInclusive value="0" />
+                                <xsd:maxInclusive value="99999" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Weight" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:minExclusive value="0" />
+								<xsd:maxExclusive value="1000.000" />
+								<xsd:fractionDigits value="3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Value" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:decimal">
+								<xsd:minExclusive value="0" />
+								<xsd:maxExclusive value="100000000.000" />
+								<xsd:fractionDigits value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="Event">
+				<xsd:sequence>
+					<xsd:element name="Date">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:dateTime">
+								<xsd:minInclusive value="1900-01-01T00:00:00" />
+								<xsd:maxExclusive value="2900-01-01T00:00:00" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Code">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="40" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Text" type="xsd:string"/>
+					<xsd:element name="ZIPCode" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="10" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="City" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="40" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Country" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="55" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ConsignorIdentification">
+				<xsd:sequence>
+					<xsd:element name="ConsignorID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ConsignorName">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ConsignorSenderAddress">
+				<xsd:sequence>
+					<xsd:element name="Contact" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Street">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="No" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="City">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ZIPCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="10" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Region" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CountryCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ConsignorReturnAddress">
+				<xsd:sequence>
+					<xsd:element name="Contact" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Street">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="No" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="City">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ZIPCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="10" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Region" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CountryCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ConsignorPickupAddress">
+				<xsd:sequence>
+					<xsd:element name="Contact">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Street" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="No" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="City" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ZIPCode" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="10" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Region" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CountryCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:simpleType name="DocumentType">
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="PDF" />
+					<xsd:enumeration value="JPG" />
+					<xsd:enumeration value="PNG" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:complexType name="DocumentSettings">
+				<xsd:sequence>
+					<xsd:element name="PrinterSettings" type="b2c:PrinterSettings" />
+					<xsd:element name="StartPosition" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>The start position is only used in the case of printer setting 'A4 - 4 Position', the default is '1' if missing</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:int">
+								<xsd:minInclusive value="1" />
+								<xsd:maxInclusive value="4" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="DocumentType" type="b2c:DocumentType" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:simpleType name="AWACode">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="6" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:complexType name="DeliveryPoint">
+				<xsd:sequence>
+					<xsd:element name="AWACode" type="b2c:AWACode" />
+					<xsd:element name="AWADescription">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:simpleType name="ParcelID">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="30" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="sendParcelDataRequest">
+		<wsdl:part name="dataRequest" element="b2c:ParcelDataRequest" />
+	</wsdl:message>
+	<wsdl:message name="sendParcelDataResponse">
+		<wsdl:part name="labelResponse" element="b2c:ParcelLabelResponse" />
+	</wsdl:message>
+	<wsdl:message name="getParcelLabelRequest">
+		<wsdl:part name="labelRequest" element="b2c:ParcelLabelRequest" />
+	</wsdl:message>
+	<wsdl:message name="getParcelLabelResponse">
+		<wsdl:part name="labelResponse" element="b2c:ParcelLabelResponse" />
+	</wsdl:message>
+	<wsdl:message name="closeDispatchListRequest">
+		<wsdl:part name="dispatchListRequest" element="b2c:DispatchListRequest" />
+	</wsdl:message>
+	<wsdl:message name="closeDispatchListResponse">
+		<wsdl:part name="dispatchListResponse" element="b2c:DispatchListResponse" />
+	</wsdl:message>
+	<wsdl:message name="getPrePaidLabelRequest">
+		<wsdl:part name="prePaidLabelRequest" element="b2c:PrePaidLabelRequest" />
+	</wsdl:message>
+	<wsdl:message name="getPrePaidLabelResponse">
+		<wsdl:part name="prePaidLabelResponse" element="b2c:PrePaidLabelResponse" />
+	</wsdl:message>
+	<wsdl:message name="deleteParcelRequest">
+		<wsdl:part name="deleteParcelRequest" element="b2c:DeleteParcelRequest" />
+	</wsdl:message>
+	<wsdl:message name="deleteParcelResponse">
+		<wsdl:part name="deleteParcelResponse" element="b2c:DeleteParcelResponse" />
+	</wsdl:message>
+	<wsdl:message name="getEventsRequest">
+		<wsdl:part name="eventRequest" element="b2c:EventRequest" />
+	</wsdl:message>
+	<wsdl:message name="getEventsResponse">
+		<wsdl:part name="eventResponse" element="b2c:EventResponse" />
+	</wsdl:message>
+	<wsdl:message name="connectionTestRequest">
+		<wsdl:part name="connectionTestRequest" element="b2c:ConnectionTestRequest" />
+	</wsdl:message>
+	<wsdl:message name="connectionTestResponse">
+		<wsdl:part name="connectionTestResponse" element="b2c:ConnectionTestResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="B2CParcelServicePort">
+		<wsdl:operation name="sendParcelData">
+			<wsdl:input message="b2c_ws:sendParcelDataRequest" />
+			<wsdl:output message="b2c_ws:sendParcelDataResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getParcelLabel">
+			<wsdl:input message="b2c_ws:getParcelLabelRequest" />
+			<wsdl:output message="b2c_ws:getParcelLabelResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="closeDispatchList">
+			<wsdl:input message="b2c_ws:closeDispatchListRequest" />
+			<wsdl:output message="b2c_ws:closeDispatchListResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getPrePaidLabel">
+			<wsdl:input message="b2c_ws:getPrePaidLabelRequest" />
+			<wsdl:output message="b2c_ws:getPrePaidLabelResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="deleteParcel">
+			<wsdl:input message="b2c_ws:deleteParcelRequest" />
+			<wsdl:output message="b2c_ws:deleteParcelResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getEvents">
+			<wsdl:input message="b2c_ws:getEventsRequest" />
+			<wsdl:output message="b2c_ws:getEventsResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="connectionTest">
+			<wsdl:input message="b2c_ws:connectionTestRequest" />
+			<wsdl:output message="b2c_ws:connectionTestResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="B2CParcelServicePortBinding" type="b2c_ws:B2CParcelServicePort">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+		<wsdl:operation name="sendParcelData">
+			<soap:operation soapAction="http://www.post.ch/b2c/v1/sendParcelData" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getParcelLabel">
+			<soap:operation soapAction="http://www.post.ch/b2c/v1/getParcelLabel" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="closeDispatchList">
+			<soap:operation soapAction="http://www.post.ch/b2c/v1/closeDispatchList" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPrePaidLabel">
+			<soap:operation soapAction="http://www.post.ch/b2c/v1/getPrePaidLabel" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteParcel">
+			<soap:operation soapAction="http://www.post.ch/b2c/v1/deleteParcel" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getEvents">
+			<soap:operation soapAction="http://www.post.ch/b2c/v1/getEvents" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="connectionTest">
+			<soap:operation soapAction="http://www.post.ch/b2c/v1/connectionTest" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="B2CParcelService">
+		<wsdl:port name="B2CParcelPort" binding="b2c_ws:B2CParcelServicePortBinding">
+			<soap:address location="https://webservices.post.ch:17002/IN_B2CxParcel/v1/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
